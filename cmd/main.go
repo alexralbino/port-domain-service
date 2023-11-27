@@ -8,6 +8,9 @@ import (
 )
 
 func main() {
+	// Initialize the in-memory repository
+	// repo := repository.NewInMemoryRepository()
+
 	// Handle signals for graceful shutdown
 	stop := make(chan os.Signal, 1)
 	signal.Notify(stop, syscall.SIGINT, syscall.SIGTERM)
