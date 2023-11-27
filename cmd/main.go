@@ -1,10 +1,17 @@
 package main
 
+import (
+	"log"
+	"os"
+	"os/signal"
+	"syscall"
+)
+
 func main() {
 	// Handle signals for graceful shutdown
 	stop := make(chan os.Signal, 1)
 	signal.Notify(stop, syscall.SIGINT, syscall.SIGTERM)
-	
+
 	go func() {
 		sig := <-stop
 		log.Printf("Received signal %v. Shutting down gracefully...", sig)
