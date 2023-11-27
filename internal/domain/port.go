@@ -1,5 +1,7 @@
 package domain
 
+import "errors"
+
 // PortData represents the data structure for port information.
 type PortData struct {
 	Name        string    `json:"name"`
@@ -18,4 +20,13 @@ type PortData struct {
 type Port struct {
 	ID       string `json:"-"`
 	PortData `json:""`
+}
+
+// IsValid checks if the Port instance is valid, performing basic validation.
+func (p *Port) IsValid() error {
+	// Check if the ID is non-empty
+	if p.ID == "" {
+		return errors.New("id is required")
+	}
+	return nil
 }
